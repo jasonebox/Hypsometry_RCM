@@ -413,7 +413,8 @@ for jj in range(0,len(label)-1):  #len(label)#CARRA and ERA5
     #statistics
     if jj==0: areas_all=np.zeros((n,len(label)-1))
     areas_all[:,jj]=areas
-    # print(hypso[12])
+    print(hypso[11])
+    
     
     #plot parameters
     ax1.plot(hypso,elevs, mark[0], color=color[jj]) # hypsometric curve
@@ -472,14 +473,15 @@ for jj in range(0,len(label)-1):  #len(label)#CARRA and ERA5
     # ax2.spines['bottom'].set_color('r') #tab:blue
     # ax1.tick_params(axis='x', colors='r') #C0
     # plt.legend(handles=handles, frameon=False, fontsize=fs)
-    
+
     idx1 = (np.abs(np.cumsum(tp_cum) - (np.median(tp_cum)*len(tp_cum)/2))).argmin() #find elev nearest to 50% mark > median
     # idx1 = (np.abs(np.cumsum(tp_cum) - (np.cumsum(tp_cum)[-1]/2))).argmin() #find elev nearest to 50% mark ->mean
     idx2 = (np.abs(np.cumsum(areas)/1e6 - (np.median(areas)*len(areas)/(2*1e6)))).argmin() #find elev nearest to 50% mark -> median
     # idx2 = (np.abs(np.cumsum(areas)/1e6 - (np.cumsum(areas)[-1]/(2*1e6)))).argmin() #find elev nearest to 50% mark -> mean
     ax3.axhline(elevs[idx1],  linestyle=mark[0], color=color[jj], alpha=0.3) #50%
     ax4.axhline(elevs[idx2],  linestyle=mark[1], color=color[jj], alpha=0.3) #50%
-    # print(idx1,idx2, tp_cum[idx1], tp_cum[idx2] )
+    # print(jj, idx1,idx2, tp_cum[idx1], tp_cum[idx2] )
+
     
 
 ax4.tick_params(axis='x', colors='dimgrey') 
@@ -517,7 +519,7 @@ df_insitu = df_insitu.drop(df_insitu[df_insitu["End Year"] <1997].index)
 df_insitu = df_insitu.drop(df_insitu[df_insitu.Name=='Basin5'].index)
 df_insitu = df_insitu.drop(df_insitu[df_insitu.Name=='JAR2'].index)
 df_insitu = df_insitu.drop_duplicates(subset="Name")
-thresh_elev=1800
+thresh_elev=1900
 frac1=df_insitu[df_insitu.Elevation>thresh_elev]
 frac2=df_insitu[df_insitu.Elevation<thresh_elev]
 print(len(frac1)/len(df_insitu), len(frac2)/len(df_insitu))
