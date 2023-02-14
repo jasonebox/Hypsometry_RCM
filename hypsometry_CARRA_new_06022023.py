@@ -24,7 +24,7 @@ import gzip
 AD=1
 # if AD:
     # os.environ['PROJ_LIB'] = r'C:/Users/Armin/Anaconda3/pkgs/proj4-5.2.0-ha925a31_1/Library/share' #Armin needed to not get an error with import basemap: see https://stackoverflow.com/questions/52295117/basemap-import-error-in-pycharm-keyerror-proj-lib
-# from mpl_toolkits.basemap import Basemap
+from mpl_toolkits.basemap import Basemap
 
 # CARRA grid info
 # Lambert_Conformal()
@@ -133,7 +133,7 @@ for jj in range(0,len(label)-1):  #len(label)#CARRA and ERA5
         URlat=lat_mat[ni-1,nj-1]
         URlon=lon_mat[ni-1,nj-1]
         
-        # m = Basemap(llcrnrlon=LLlon, llcrnrlat=LLlat, urcrnrlon=URlon, urcrnrlat=URlat, lat_0=lat0, lon_0=lon0, resolution='h', projection='lcc')
+        m = Basemap(llcrnrlon=LLlon, llcrnrlat=LLlat, urcrnrlon=URlon, urcrnrlat=URlat, lat_0=lat0, lon_0=lon0, resolution='h', projection='lcc')
 
         mask_iceland=1
         mask_svalbard=1
@@ -661,7 +661,7 @@ df_stat = pd.DataFrame(models)
 df_stat['elev_mean']= means
 df_stat['elev_median']=medians
 df_stat['elev_rms']=rmss
-df_stat.to_csv(path+'output_csv/hypsometry_statistics.csv')
+# df_stat.to_csv(path+'output_csv/hypsometry_statistics.csv')
 
 #%% statistics
 # test=diff.copy()
